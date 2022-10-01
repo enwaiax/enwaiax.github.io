@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>虚拟化小结 | LuckyHunter's notes</title><meta name="keywords" content="虚拟化"><meta name="author" content="LuckyHunter"><meta name="copyright" content="LuckyHunter"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 虚拟化的定义及分类  这一部分是对当期存在的虚拟机技术进行简单的总结与讲解，很多是一句而过的。其实每一个技术都可以重新写出一篇内容丰富的博客，但是每个技术不是本篇文章的重点，所以不对每一个技术进行详细论述。欢迎对每个技术进行评论与纠错。 1.1 虚拟化定义：虚拟化主要指的是特殊的技术，通过隐藏特定计算平台的实际物理特性，为用户提供抽象的、统一的、模拟的计算环境（称为虚拟机）(IBM 定义)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟化小结">
+<meta property="og:url" content="https://note.520086.xyz/posts/59503/index.html">
+<meta property="og:site_name" content="LuckyHunter&#39;s notes">
+<meta property="og:description" content="1. 虚拟化的定义及分类  这一部分是对当期存在的虚拟机技术进行简单的总结与讲解，很多是一句而过的。其实每一个技术都可以重新写出一篇内容丰富的博客，但是每个技术不是本篇文章的重点，所以不对每一个技术进行详细论述。欢迎对每个技术进行评论与纠错。 1.1 虚拟化定义：虚拟化主要指的是特殊的技术，通过隐藏特定计算平台的实际物理特性，为用户提供抽象的、统一的、模拟的计算环境（称为虚拟机）(IBM 定义)。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-18T09:05:51.000Z">
+<meta property="article:modified_time" content="2022-10-01T12:15:33.920Z">
+<meta property="article:author" content="LuckyHunter">
+<meta property="article:tag" content="虚拟化">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://note.520086.xyz/posts/59503/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="AZP6H6Qd1ZSLHk6tSKnOh7AzxAGs_XJ5RTnmJ7FOzGA"/><meta name="baidu-site-verification" content="a466302a34f8dd0242a60982e3ddefde"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-5551967219195520',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a466302a34f8dd0242a60982e3ddefde";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-CHY3RCM2FR"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-CHY3RCM2FR');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '虚拟化小结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-01 20:15:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">LuckyHunter's notes</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">虚拟化小结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-18T09:05:51.000Z" title="发表于 2022-05-18 17:05:51">2022-05-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="虚拟化小结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="1- 虚拟化的定义及分类"><a href="#1- 虚拟化的定义及分类" class="headerlink" title="1. 虚拟化的定义及分类"></a>1. 虚拟化的定义及分类 </h2><p> 这一部分是对当期存在的虚拟机技术进行简单的总结与讲解，很多是一句而过的。其实每一个技术都可以重新写出一篇内容丰富的博客，但是每个技术不是本篇文章的重点，所以不对每一个技术进行详细论述。欢迎对每个技术进行评论与纠错。</p>
+<h3 id="1-1- 虚拟化定义："><a href="#1-1- 虚拟化定义：" class="headerlink" title="1.1 虚拟化定义："></a>1.1 虚拟化定义：</h3><p>虚拟化主要指的是特殊的技术，通过隐藏特定计算平台的实际物理特性，为用户提供抽象的、统一的、模拟的计算环境（称为虚拟机）(IBM 定义)。虚拟化为有效利用大型机的资源提供了技术支持。虚拟机技术也是多种多样，而可以虚拟的层次或者可虚拟的方面也是遍布从硬件到应用层整个计算机系统。如图片所示：</p>
+<p><img src="https://images2017.cnblogs.com/blog/417876/201801/417876-20180127151547084-1841860602.png" alt="img"></p>
+<h3 id="1-2- 虚拟机分类："><a href="#1-2- 虚拟机分类：" class="headerlink" title="1.2 虚拟机分类："></a>1.2 虚拟机分类：</h3><p>虚拟机的分类也是多种多样。可以通过是否在裸机上部署来分为面向主机的的虚拟机和面向裸机的虚拟机。面向主机的虚拟机是指的在一台已经安装操作系统的主机上安装虚拟机管理 (VMM) 程序，而面向裸机的是指在裸机上直接安装虚拟机管理程序，所有的虚拟机调用都是直接由虚拟机管理程序来负责，没有了操作系统这一步，所以这种方式在效率上要高于面向主机的。不过，比较流行的技术比如 vmware，Xen 都是面向主机的。</p>
+<p>然后根据上面的图去分类的话，可以分为对 <strong> 硬件的虚拟 </strong> 和对 <strong> 操作系统或者对软件的虚拟</strong>。</p>
+<p>在 <strong> 硬件虚拟化 </strong> 这个层面，又有三种不同的技术：</p>
+<ol>
+<li>Full Virtualization（全虚拟化），几乎是完整地模拟一套真实的硬件设备。大部分操作系统无须进行任何修改即可直接运行在全虚拟化环境中。像 KVM 等技术是全虚拟化。</li>
+<li>Partial Virtualization（部分虚拟化），仅仅提供了对关键性计算组件或者指令集的模拟。操作系统可能需要做某些修改才能够运行在部分虚拟化环境中。</li>
+<li>Paravirtualization（半虚拟化），不对硬件设备进行模拟，虚拟机拥有独立的运行环境，通过虚拟机管理程序共享底层的硬件资源。大部分操作系统需要进行修改才能够运行在半虚拟化环境中。它的性能要稍微高于全虚拟化。像 Xen。因为需要改动托管系统的内核，所以 Xen 是不支持 win 虚拟机的。</li>
+</ol>
+<p>另外还有像硬件辅助虚拟化，就是宿主机的硬件架构在一定程度上提供对虚拟化的支持。像 Intel-VT 与 AMD-V 都提供了这等架构支持，请参考给出的参考资料。</p>
+<p><strong>软件层面的虚拟化</strong>，往往是指在同一个操作系统实例的基础上提供多个隔离的虚拟运行环境，也常常被称为容器技术。LXC（Linux Container）则是采用了这种技术，它主要是采用了 Linux 本身提供的技术，在一定程度上模拟虚拟化。软件虚拟化也可以理解成进程级虚拟机，其他虚拟化成为系统级虚拟机。在进程级虚拟机中负责虚拟化的软件成为运行时软件，而系统级虚拟机中负责虚拟化的软件成为 VMM(Virtual Machine Monitor)</p>
+<p>对于硬件与软件虚拟化两种技术，都是存在优点和缺点。对于硬件虚拟化，我们讨论全虚拟化和部分虚拟化。因为现在大部分的虚拟化技术 Xen、KVM 都支持这两种。硬件虚拟化基本上就是在一台宿主机上虚拟了整个系统，各台虚拟机之间相互不可见。这会很明显导致很多重复的线程和重复的内存页出现，性能上肯定会有影响。所以采用这种技术，一台宿主机上虚拟机的个数肯定会有一定限制。</p>
+<p>对于软件虚拟化，我们讨论 LXC，因为只有这一种我用过。LXC 是通过 cgroup 对线程进行隔离，对资源进行限制；通过 Namespace 对调用系统提供的系统调用来进行资源隔离。<a target="_blank" rel="noopener" href="http://lxc.sourceforge.net/">LXC 介绍</a>。通过此也可以看出，它所有虚拟化出来的虚拟机都是运行在宿主机本身上的，它的线程和资源对宿主机都是可见的。这就不存在很多重复的线程和内存也的问题，所以一台宿主机上可以通过此技术虚拟出更多的虚拟机。</p>
+<p>最近非常流行的 Docker 也是软件虚拟化的一种，它的原理也是使用了 Linux 提供的 namespace 对资源进行隔离，不过它提供了比 LXC 更强大的功能实现。</p>
+<h2 id="2- 虚拟化技术"><a href="#2- 虚拟化技术" class="headerlink" title="2. 虚拟化技术"></a>2. 虚拟化技术 </h2><h3 id="2-1-kvm"><a href="#2-1-kvm" class="headerlink" title="2.1 kvm"></a>2.1 kvm</h3><p> 对于 KVM 来说，其是一款支持虚拟机技术，而且是 Linux 内核中的一个功能模块。它在 Linux2.6.20 之后的任何 Linux 分支中都被支持。它还有一个条件，对硬件要求的条件，必须达到一定标准的硬件架构。对于 Intel-VT 与 AMD-V 都是支持的。对于是否支持也可以通过命令行查看：egrep ‘(vmx|svm)’ –color&#x3D;always &#x2F;proc&#x2F;cpuinfo。如果有任何内容则说明当期硬件架构是支持 KVM 的，否则就不支持。另外，就算支持，但是在 bios 中是默认设置不打开该功能的，所以你还要去 bios 设置其为 enable。当设置成功之后，还需要关机一次，注意是关机而不是重启。否则该设置的更改就不起效。</p>
+<p>KVM 是 linux 内核的模块，它需要 CPU 的支持，采用硬件辅助虚拟化技术 Intel-VT，AMD-V，内存的相关如 Intel 的 EPT 和 AMD 的 RVI 技术，Guest OS 的 CPU 指令不用再经过 Qemu 转译，直接运行，大大提高了速度，KVM 通过 &#x2F;dev&#x2F;kvm 暴露接口，用户态程序可以通过 ioctl 函数来访问这个接口。</p>
+<p>KVM 内核模块本身只能提供 CPU 和内存的虚拟化，所以它必须结合 QEMU 才能构成一个完成的虚拟化技术，这就是下面要说的 qemu-kvm。</p>
+<h3 id="2-2-qemu"><a href="#2-2-qemu" class="headerlink" title="2.2 qemu"></a>2.2 qemu</h3><p>QEMU 是什么。其实它也是一款虚拟化技术，就算不使用 KVM，单传的 QEMU 也可以完全实现一个虚拟机。那为何还会有 QEMU-KVM 这个名词那。是因为虽然 KVM 的技术已经相当成熟而且可以对很多东西进行隔离，但是在某些方面还是无法虚拟出真实的机器。比如对网卡的虚拟，那这个时候就需要另外的技术来做补充，而 QEMU-KVM 则是这样一种技术。它补充了 KVM 技术的不足，而且在性能上对 KVM 进行了优化。</p>
+<p>QEMU 是一款开源的模拟器及虚拟机监管器(Virtual Machine Monitor, VMM)，它是构建基于 KVM 上面的，它提供了完整的网络和 I&#x2F;O 支持。</p>
+<p>QEMU 主要提供两种功能给用户使用。 一是作为用户态模拟器，利用动态代码翻译机制来执行不同于主机架构的代码。 二是作为虚拟机监管器，模拟全系统，利用其他 VMM(Xen, KVM, etc)来使用硬件提供的虚拟化支持，创建接近于主机性能的虚拟机。 用户可以通过不同 Linux 发行版所带有的软件包管理器来安装 QEMU。</p>
+<p>它向 Guest OS 模拟 CPU 和其他硬件，Guest OS 认为自己和硬件直接打交道，其实是同 Qemu 模拟出来的硬件打交道，Qemu 将这些指令转译给真正的硬件。</p>
+<p>由于所有的指令都要从 Qemu 里面过一手，因而性能较差</p>
+<p><img src="http://s3.51cto.com/wyfs02/M00/6F/77/wKiom1WdDYyjiVZiAAECBtAEQ5E590.jpg" alt="img"></p>
+<h3 id="2-3-qemu-kvm"><a href="#2-3-qemu-kvm" class="headerlink" title="2.3 qemu-kvm"></a>2.3 qemu-kvm</h3><p>Qemu 将 KVM 整合进来，通过 ioctl 调用 &#x2F;dev&#x2F;kvm 接口，将有关 CPU 指令的部分交由内核模块来做。kvm 负责 cpu 虚拟化 + 内存虚拟化，实现了 cpu 和内存的虚拟化，但 kvm 不能模拟其他设备。qemu 模拟 IO 设备（网卡，磁盘等），kvm 加上 qemu 之后就能实现真正意义上服务器虚拟化。因为用到了上面两个东西，所以称之为 qemu-kvm。</p>
+<p>Qemu 模拟其他的硬件，如 Network, Disk，同样会影响这些设备的性能，于是又产生了 pass through 半虚拟化设备 virtio_blk, virtio_net，提高设备性能。</p>
+<p><img src="http://s3.51cto.com/wyfs02/M01/6F/77/wKiom1WdDc2CEwy6AAGPf4VzQao172.jpg" alt="img"></p>
+<h3 id="2-4-libvirt"><a href="#2-4-libvirt" class="headerlink" title="2.4 libvirt"></a>2.4 libvirt</h3><p>libvirt 是一系列提供出来的库函数，用以其他技术调用，来管理机器上的虚拟机。包括各种虚拟机技术，KVM、Xen 与 lxc 等，都可以调用 libvirt 提供的 api 对虚拟机进行管理。有这么多的虚拟机技术，它为何能提供这么多的管理功能那。是因为它的设计理念，它是面向驱动的架构设计。对任何一种虚拟机技术都开发设计相对于该技术的驱动。这样不同虚拟机技术就可以使用不同驱动，而且相互直接不会影响，方便扩展。而且 libvirt 提供了多种语言的编程接口，可以直接通过编程，调用 libvirt 提供的对外接口实现对虚拟机的操作。如今流行的云计算中的 IaaS 是与该库联系相当密切的。</p>
+<p>它是目前使用最为广泛的对 KVM 虚拟机进行管理的工具和 API。Libvirtd 是一个 daemon 进程，可以被本地的 virsh 调用，也可以被远程的 virsh 调用，Libvirtd 调用 qemu-kvm 操作虚拟机。</p>
+<p><img src="http://s3.51cto.com/wyfs02/M02/6F/74/wKioL1WdD72RRy8mAAIuDm6sVAY591.jpg" alt="img"></p>
+<p>通过下图可以看出它的架构设计思想。</p>
+<p>从该图可以看出，在 libvirt api 之上会有很多个 driver，对于每一种虚拟机技术都会有一种 driver，用来充当该虚拟机技术与 libvirt 之间的包装接口。如此设计就可以避免 libvirt 需要设计各种针对不同虚拟机技术的接口，它主要关注底层的实现，提供对外接口调用，而不同的虚拟机技术通过调用 libvirt 提供的接口来完成自己所需要的功能。</p>
+<p><img src="https://images2017.cnblogs.com/blog/417876/201801/417876-20180127151127147-2045532909.png" alt="img"></p>
+<p>Openstack 通过 libvirt 去间接控制 qemu-kvm。libvirt 提供了跨 VM 平台的功能，它可以控制除了 QEMU 之外 的模拟器，包括 vmware, virtualbox， xen 等等。</p>
+<p>所以为了 openstack 的跨 VM 性，所以 openstack 只会用 libvirt 而不直接用 qemu-kvm。libvirt 还提供了一些高级的功能，例如 pool&#x2F;vol 管理。</p>
+<h2 id="3- 虚拟机网络"><a href="#3- 虚拟机网络" class="headerlink" title="3. 虚拟机网络"></a>3. 虚拟机网络 </h2><p> 一般虚拟机虚拟网络的设置主要包括三种方式。主要如下：</p>
+<h3 id="3-1-NAT- 模式"><a href="#3-1-NAT- 模式" class="headerlink" title="3.1 NAT 模式"></a>3.1 NAT 模式 </h3><p> 也有人称此种模式为 HOST（宿主）模式。在这种模式下虚拟机可以理解成没有自己的独立网卡。所有访问虚拟机的请求其实是直接发送给宿主机，然后通过访问宿主机转发到虚拟机上的。相应的虚拟机访问其他网络，也是先转发到宿主机然后在转发出去。对于宿主机之外的网络，是不知道该虚拟机存在的。</p>
+<h3 id="3-2-Bridge- 模式"><a href="#3-2-Bridge- 模式" class="headerlink" title="3.2 Bridge 模式"></a>3.2 Bridge 模式 </h3><p> 桥接模式是使用比较多的模式，它是虚拟机拥有自己的独立网卡和 IP，然后通过借用宿主机的网卡对外连接网络。它把宿主机的网卡当作了一种桥，通过这个桥连接外网的世界。在这种模式下，可以简单的理解成虚拟机和宿主机是两个不同的机器，有独立 IP 可以相互访问。对于虚拟机的 IP 获取，一般可以直接指定也可以通过 DHCP 获取得到。</p>
+<h3 id="3-3-Internal- 模式"><a href="#3-3-Internal- 模式" class="headerlink" title="3.3 Internal 模式"></a>3.3 Internal 模式 </h3><p> 这个是把虚拟机之间的网络和主机的网络隔离开来。虚拟机是一片网络，主机也是一片网络，彼此之间不能相互访问。</p>
+<h2 id="4- 关系"><a href="#4- 关系" class="headerlink" title="4. 关系"></a>4. 关系</h2><p>KVM 虚拟机是基于 Linux 内核虚拟化，自 Linux2.6.20 之后就集成在 Linux 的各个主要发行版本中。它使用 Linux 自身的调度器进行管理，所以相对于 Xen，其核心源码很少。KVM 的虚拟化需要硬件的支持（如 intel VT 技术或者 AMD V 技术），是基于硬件的完全虚拟化。而 Xen 早期则是基于软件模拟的 para-virtualization，新版本是基于硬件支持的完全虚拟化。</p>
+<p>QEMU 是一种模拟处理器，现在运用最多的就是将 KVM 和 QEMU 结合起来。</p>
+<p>准确来说，KVM 是 Linux Kernel 的一个模块，可以用命令 modprobe 去加载 KVM 模块。加载了该模块后，才能进一步通过工具创建虚拟机。但是仅有 KVM 模块是不够的。因为用户无法直接控制内核去做事情，还必须有一个运行在用户空间的工具才行。这个用户空间的工具，KVM 开发者选择了已经成型的开源虚拟化软件 QEMU。说起来 QEMU 也是一个虚拟化软件。它的特点是可虚拟不同的 CPU。比如说在 x86 的 CPU 上可虚拟一个 power 的 CPU，并可利用它编译出可运行在 power 上的 CPU，并可利用它编译出可运行在 power 上的程序。KVM 使用了 QEMU 的一部分，并稍加改造，就成了可控制 KVM 的用户空间工具了。所以你会看到，官方提供的 KVM 下载有两大部分 (QEMU 和 KVM) 三个文件(KVM 模块、QEMU 工具以及二者的合集)。也就是说，你可以只升级 KVM 模块，也可以只升级 QEMU 工具。这就是 KVM 和 QEMU 的关系。</p>
+<p>如下图：</p>
+<p><img src="https://images2017.cnblogs.com/blog/417876/201801/417876-20180127152001022-514486494.png" alt="img"></p>
+<p>Linux Kernel-based Virtual Machine (KVM) 是一款 Linux 开放源码虚拟化软件，基于硬件虚拟化扩展（Intel VT- X 和 AMD-V）和 QEMU 的修改版。KVM 的实现模块又两个，分别是： kvm.ko 是提供核心虚拟化的基础架构；特定于处理器的模块 kvm-intel.ko 和 kvm-amd.ko 。其设计目标是在需要引导多个未改动的 P 操作系统时支持完整的硬件模拟。</p>
+<p>一个普通的 Linux 进程有两种运行模式：内核和用户。而 KVM 增加了第三种模式：客户模式（有自己的内核和用户模式）。在 KVM 模型中，每一个虚拟机都是由 Linux 调度程序管理的标准进程。</p>
+<p>KVM 由两个部分组成：一个是管理虚拟硬件的设备驱动，该驱动使用字符设备 &#x2F;dev&#x2F;kvm 作为管理接口；另一个是模拟 PC 硬件的用户空间组件，这是一个稍作修改的 QEMU 进程。</p>
+<h2 id="5- 参考："><a href="#5- 参考：" class="headerlink" title="5. 参考："></a>5. 参考：</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="http://virt-manager.org/">VirtManager 介绍</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B3%A2%E4%BD%A9%E5%85%8B%E4%B8%8E%E6%88%88%E5%BE%B7%E5%A0%A1%E8%99%9A%E6%8B%9F%E5%8C%96%E9%9C%80%E6%B1%82">wiki 波佩克与戈德堡虚拟化需求</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://lwn.net/Articles/531114/">Linux namespace 介绍</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://zh.wikipedia.org/wiki/X86%E8%99%9A%E6%8B%9F%E5%8C%96">Intel-VT 介绍</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/zwan0518/article/details/10613481">虚拟化技术以及 KVM、QEMU 与 libvirt 介绍</a>（以上内容部分转自此篇文章）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-16361381-id-211999.html">kvm 和 qemu 的关系</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/chdhust/article/details/7557791">KVM&#x2F;QEMU 简介</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bakari/p/7858029.html">https://www.cnblogs.com/bakari/p/7858029.html</a></p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://note.520086.xyz">LuckyHunter</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://note.520086.xyz/posts/59503/">https://note.520086.xyz/posts/59503/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://note.520086.xyz" target="_blank">LuckyHunter's notes</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/45989/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">docker volume 的 rw 和 ro 区别</div></div></a></div><div class="next-post pull-right"><a href="/posts/15032/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">总结：Python 中的异常处理</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LuckyHunter</div><div class="author-info__description">Stay hungry, stay foolish.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chasing66"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/chasing66" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:chasing0806@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://music.163.com/user/home?id=19969120" target="_blank" title="Music"><i class="fa-solid fa-music"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%20%E8%99%9A%E6%8B%9F%E5%8C%96%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%88%86%E7%B1%BB"><span class="toc-text">1. 虚拟化的定义及分类 </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%20%E8%99%9A%E6%8B%9F%E5%8C%96%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-text">1.1 虚拟化定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%20%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-text">1.2 虚拟机分类：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%20%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF"><span class="toc-text">2. 虚拟化技术 </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-kvm"><span class="toc-text">2.1 kvm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-qemu"><span class="toc-text">2.2 qemu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-qemu-kvm"><span class="toc-text">2.3 qemu-kvm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-libvirt"><span class="toc-text">2.4 libvirt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%20%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-text">3. 虚拟机网络 </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-NAT-%20%E6%A8%A1%E5%BC%8F"><span class="toc-text">3.1 NAT 模式 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Bridge-%20%E6%A8%A1%E5%BC%8F"><span class="toc-text">3.2 Bridge 模式 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Internal-%20%E6%A8%A1%E5%BC%8F"><span class="toc-text">3.3 Internal 模式 </span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%20%E5%85%B3%E7%B3%BB"><span class="toc-text">4. 关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%20%E5%8F%82%E8%80%83%EF%BC%9A"><span class="toc-text">5. 参考：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/65201/" title="体验地表最强 TTS —— 微软 TTS"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="体验地表最强 TTS —— 微软 TTS"/></a><div class="content"><a class="title" href="/posts/65201/" title="体验地表最强 TTS —— 微软 TTS">体验地表最强 TTS —— 微软 TTS</a><time datetime="2022-09-06T08:16:16.000Z" title="发表于 2022-09-06 16:16:16">2022-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/16503/" title="cat 和 tee 的用法"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="cat 和 tee 的用法"/></a><div class="content"><a class="title" href="/posts/16503/" title="cat 和 tee 的用法">cat 和 tee 的用法</a><time datetime="2022-09-01T03:19:46.000Z" title="发表于 2022-09-01 11:19:46">2022-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/10135/" title="使用 direnv 自动加载当前文件夹环境变量"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 direnv 自动加载当前文件夹环境变量"/></a><div class="content"><a class="title" href="/posts/10135/" title="使用 direnv 自动加载当前文件夹环境变量">使用 direnv 自动加载当前文件夹环境变量</a><time datetime="2022-08-24T07:57:50.000Z" title="发表于 2022-08-24 15:57:50">2022-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/54550/" title="docker 部署 mariadb"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker 部署 mariadb"/></a><div class="content"><a class="title" href="/posts/54550/" title="docker 部署 mariadb">docker 部署 mariadb</a><time datetime="2022-08-22T14:56:03.000Z" title="发表于 2022-08-22 22:56:03">2022-08-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/6610/" title="Selenium 使用 cookies 经验"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Selenium 使用 cookies 经验"/></a><div class="content"><a class="title" href="/posts/6610/" title="Selenium 使用 cookies 经验">Selenium 使用 cookies 经验</a><time datetime="2022-08-16T03:16:59.000Z" title="发表于 2022-08-16 11:16:59">2022-08-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By LuckyHunter</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

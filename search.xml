@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>禁用 vim 的 visual 模式</title>
+      <link href="/posts/29561/"/>
+      <url>/posts/29561/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 从 Debian9 开始，为了便于选取文本，VIM 引入了可视 (Visual) 模式。 可以使用以下三种模式：</p><ul><li>用 v 命令进入的字符可视化模式（Characterwise visual mode)。文本选择是以字符为单位的。</li><li>用 V 命令进入的行可视化模式（Linewise visual mode)。文本选择是以行为单位的。</li><li>用 ctrl-V 进入的块可视化模式（Blockwise visual mode）。可以选择一个矩形内的文本。</li></ul><p>个人用不太习惯，此处记录一下如何 disable 这个功能。</p><h2 id="方法"><a href="# 方法" class="headerlink" title="方法"></a>方法 </h2><p> 通过编辑 vim 配置文件去除默认设置的鼠标模式<code>a</code>。可以编辑全局 <code>/etc/vim/vimrc.local</code> 或者当前用户配置文件<code>~/.vimrc</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tee</span> /etc/vim/vimrc.local  &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">source $(find / -name defaults.vim)</span></span><br><span class="line"><span class="string">let skip_defaults_vim = 1</span></span><br><span class="line"><span class="string">if has(&#x27;mouse&#x27;)</span></span><br><span class="line"><span class="string">    set mouse-=a</span></span><br><span class="line"><span class="string">endif</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure><p><strong>此处也记录一下 EOF 里对于变量的处理</strong></p><h3 id="希望解析变量，直接使用’-lt-lt-EOF’即可"><a href="# 希望解析变量，直接使用’-lt-lt-EOF’即可" class="headerlink" title="希望解析变量，直接使用’&lt;&lt; EOF’即可"></a>希望解析变量，直接使用’&lt;&lt; EOF’即可</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tee /etc/vim/vimrc.local  &lt;&lt; EOF</span><br><span class="line">source $(find / -name defaults.vim)</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure><h4 id="不希望解析变量"><a href="# 不希望解析变量" class="headerlink" title="不希望解析变量"></a>不希望解析变量</h4><ol><li>EOF 加反斜杠，或用单引号、双引号包围 。适用变量多的情况</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /tmp/test.log &lt;&lt; &#x27;EOF&#x27;</span><br><span class="line">export NODE_HOME=/usr/local/node</span><br><span class="line">export PATH=$NODE_HOME/bin:$PATH</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure><ol start="2"><li>加转义字符，适用于变量少的情况</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat cat &gt; /tmp/test.log &lt;&lt; EOF</span><br><span class="line">export NODE_HOME=/usr/local/node</span><br><span class="line">export PATH=\$NODE_HOME/bin:\$PATH</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>一些 git 笔记</title>
       <link href="/posts/59898/"/>
       <url>/posts/59898/</url>

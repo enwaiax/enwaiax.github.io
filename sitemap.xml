@@ -92,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://note.520086.xyz/posts/42816/</loc>
+    <loc>https://note.520086.xyz/posts/52155/</loc>
     
     <lastmod>2022-10-01</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://note.520086.xyz/posts/52155/</loc>
+    <loc>https://note.520086.xyz/posts/42816/</loc>
     
     <lastmod>2022-10-01</lastmod>
     
@@ -387,6 +387,13 @@
   </url>
   
   <url>
+    <loc>https://note.520086.xyz/tags/python/</loc>
+    <lastmod>2022-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://note.520086.xyz/tags/git/</loc>
     <lastmod>2022-12-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -395,13 +402,6 @@
   
   <url>
     <loc>https://note.520086.xyz/tags/linux/</loc>
-    <lastmod>2022-12-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://note.520086.xyz/tags/python/</loc>
     <lastmod>2022-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

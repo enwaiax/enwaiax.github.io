@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>0041 css locate elemennts | LuckyHunter's notes</title><meta name="author" content="LuckyHunter"><meta name="copyright" content="LuckyHunter"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="大部分人在使用 selenium 定位元素时，用的是 xpath 定位，css 定位往往被忽略掉了，其实 css 定位也有它的价值，css 定位更快，语法更简洁。 我们先来看看 css 定位与 xpath 定位的区别在哪？ CSS 与 Xpath 定位的区别  属性定位CSScss 可以通过元素的"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://note.520086.xyz/posts/1901/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="AZP6H6Qd1ZSLHk6tSKnOh7AzxAGs_XJ5RTnmJ7FOzGA"/><meta name="baidu-site-verification" content="a466302a34f8dd0242a60982e3ddefde"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-5551967219195520',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a466302a34f8dd0242a60982e3ddefde";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-CHY3RCM2FR"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-CHY3RCM2FR');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '0041 css locate elemennts',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-26 11:17:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script async src="https://analytics.umami.is/script.js" data-website-id="dd465945-045a-494e-8f67-958830de96bf"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="LuckyHunter's notes"><span class="site-name">LuckyHunter's notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">0041 css locate elemennts</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-26T03:08:58.000Z" title="发表于 2023-04-26 11:08:58">2023-04-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-26T03:17:02.580Z" title="更新于 2023-04-26 11:17:02">2023-04-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="0041 css locate elemennts"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>大部分人在使用 selenium 定位元素时，用的是 xpath 定位，css 定位往往被忽略掉了，其实 css 定位也有它的价值，css 定位更快，语法更简洁。</p>
+<p>我们先来看看 css 定位与 xpath 定位的区别在哪？</p>
+<h2 id="CSS- 与 -Xpath- 定位的区别"><a href="#CSS- 与 -Xpath- 定位的区别" class="headerlink" title="CSS 与 Xpath 定位的区别"></a>CSS 与 Xpath 定位的区别 </h2><h2 id="属性定位"><a href="# 属性定位" class="headerlink" title="属性定位"></a> 属性定位</h2><p>CSS<br>css 可以通过元素的 id、class、标签这三个常规属性直接定位</p>
+<ol>
+<li>css 用 #号表示 id 属性，如：<br>id&#x3D;’kw’ 可以写成：#kw</li>
+<li>css 用. 表示 class 属性，如：<br>class&#x3D;”s_ipt”可以写成：.s_ipt</li>
+<li>css 直接用标签名称，无任何标识符，如：input</li>
+</ol>
+<p>Xpath<br>xpath 也可以通过元素的 id、name、class 这些属性定位</p>
+<ol>
+<li>用 xpath 通过 id 属性定位<br>driver.find_element(By.XPATH,”&#x2F;&#x2F;[@id&#x3D;’kw’]”)</li>
+<li>用 xpath 通过 name 属性定位<br>driver.find_element(By.XPATH,”&#x2F;&#x2F;[@name&#x3D;’wd’]”)</li>
+<li>用 xpath 通过 class 属性定位<br>driver.find_element(By.XPATH,”&#x2F;&#x2F;*[@class&#x3D;’s_ipt’]”)</li>
+</ol>
+<h2 id="其他属性"><a href="# 其他属性" class="headerlink" title="其他属性"></a>其他属性</h2><p>CSS<br>css 除了上述以外，也可以通过其他属性定位</p>
+<ol>
+<li>css 通过 name 属性定位：<br>driver.find_element(By.CSS_SELECTOR,”[name&#x3D;’wd’]”)</li>
+<li>css 通过 autocomplete 属性定位：<br>driver.find_element(By. CSS_SELECTOR,”[autocomplete&#x3D;’off’]”)</li>
+<li>css 通过 type 属性定位:<br>driver.find_element(By.CSS_SELECTOR,”[type&#x3D;’text’]”)</li>
+</ol>
+<p>Xpath<br>没有上述属性，可以通过其他属性定位<br>driver.find_element(By.XPATH,”&#x2F;&#x2F;*[@autocomplete&#x3D;’off’]”)</p>
+<h2 id="标签"><a href="# 标签" class="headerlink" title="标签"></a>标签</h2><p>CSS<br>css 页可以通过标签与属性的组合来定位元素</p>
+<ol>
+<li>css 通过标签与 class 属性的组合定位 driver.find_element(By.CSS_SELECTOR,’input.s_ipt’)</li>
+<li>css 通过标签与 id 属性的组合定位 driver.find_element(By.CSS_SELECTOR,’input#kw’)</li>
+<li>css 通过标签与其他属性组合定位 driver.find_element(By.CSS_SELECTOR,’input[id&#x3D;’kw’]’)</li>
+</ol>
+<p>Xpath<br>1、如果同一个属性，同名的比较多，可以通过标签筛选</p>
+<ol>
+<li>用 xpath 通过其他属性定位 driver.find_element(By.XPATH,”&#x2F;&#x2F;input[@autocomplete&#x3D;’off’]”)</li>
+<li>用 xpath 通过 id 属性定位 driver.find_element(By.XPATH,”&#x2F;&#x2F;input[@id&#x3D;’kw’]”)</li>
+<li>用 xpath 通过 name 属性定位 driver.find_element(By.XPATH,”&#x2F;&#x2F;name[@id&#x3D;’wd’]”)</li>
+</ol>
+<h2 id="层级关系"><a href="# 层级关系" class="headerlink" title="层级关系"></a>层级关系 </h2><p>CSS<br> 如：&#x2F;&#x2F;form[@id&#x3D;’form’]&#x2F;span&#x2F;input 和 &#x2F;&#x2F;form[@class&#x3D;’fm’]&#x2F;span&#x2F;input</p>
+<ol>
+<li>css 通过层级关系定位 driver.find_element(By.CSS_SELECTOR,’form#form&gt;span&gt;input’)</li>
+<li>css 通过层级关系定位 driver.find_element(By.CSS_SELECTOR,’form.fm&gt;span&gt;input’)</li>
+</ol>
+<p>Xpath<br>如果一个元素，他的属性不明显，无法直接定位，可以先找到他的父元素，找到父元素，再找下一级就能定位</p>
+<ol>
+<li>通过定位父元素来定位 input 输入框 driver.find_element(By.XPATH,”&#x2F;&#x2F;span[@id&#x3D;’s_kw_wrap’]&#x2F;input”)</li>
+<li>通过定位爷元素来定位 input 输入框 driver.find_element(By.XPATH,”&#x2F;&#x2F;form[@id&#x3D;’form’]&#x2F;span&#x2F;input”)</li>
+</ol>
+<h2 id="索引"><a href="# 索引" class="headerlink" title="索引"></a>索引 </h2><p>CSS<br>css 也可以通过索引 option：nth-child(1) 来定位子元素</p>
+<ol>
+<li>选择第一个子元素 driver.find_element(By.CSS_SELECTOR,’select#nr&gt;option:nth-child(1)’)</li>
+<li>选择第二个子元素 driver.find_element(By.CSS_SELECTOR,’select#nr&gt;option:nth-child(2)’)</li>
+<li>选择第三个子元素 driver.find_element(By.CSS_SELECTOR,’select#nr&gt;option:nth-child(3)’)</li>
+</ol>
+<p>Xpath<br>可以通过排序定位</p>
+<ol>
+<li>用 xpath 定位第一位 driver.find_element(By.XPATH,”&#x2F;&#x2F;select[@id&#x3D;’nr’]&#x2F;option[1]”)</li>
+<li>用 xpath 定位第二位 driver.find_element(By.XPATH,”&#x2F;&#x2F;select[@id&#x3D;’nr’]&#x2F;option[2]”)</li>
+<li>用 xpath 定位第三位 driver.find_element(By.XPATH,”&#x2F;&#x2F;select[@id&#x3D;’nr’]&#x2F;option[3]”)</li>
+</ol>
+<h2 id="模糊匹配"><a href="# 模糊匹配" class="headerlink" title="模糊匹配"></a>模糊匹配</h2><p>CSS<br>driver.find_element(By.CSS_SELECTOR,”input:contains(‘kw’)”)</p>
+<p>Xpath</p>
+<ol>
+<li>xpath 强大的模糊匹配</li>
+<li>by_partial_link，模糊匹配定位<br>driver.find_element(By.XPATH,”&#x2F;&#x2F;*[contains(text(),’hao123’)]”)</li>
+</ol>
+<p>什么是 css 定位呢？</p>
+<p>它是 Selenium 中的一种定位剂，通过它我们可以识别网页上的 Web 元素。CSS 代表级联样式表，用于样式化 HTML 网页的不同元素。CSS 选择器定位器始终是在网页上定位元素的最佳方法。不论浏览器如何，CSS 始终相同。</p>
+<p>css 定位方法：find_element_by_css_selector()</p>
+<p><strong>css 几种定位方式</strong></p>
+<p><strong>1：id 选择器</strong></p>
+<p>说明：根据元素 id 属性来选择</p>
+<p>格式：#id 属性值 如：#userA(选择 id 属性值为 userA 的所有元素)</p>
+<p>示例：打开百度首页，通过 css 定位，id 属性来输入搜索关键字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 打开 chrome 浏览器</span></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line"><span class="comment"># 打开百度搜索页面</span></span><br><span class="line">driver.get(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过 css id 属性来定位</span></span><br><span class="line">driver.find_element_by_css_selector(<span class="string">&#x27;#kw&#x27;</span>).send_keys(<span class="string">&#x27;selenium&#x27;</span>)</span><br><span class="line"><span class="comment"># 强制等待 2 秒查看效果</span></span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 关闭浏览器</span></span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure>
+
+<p><strong>2：class 选择器</strong></p>
+<p>说明：根据元素 class 属性来选择</p>
+<p>格式：.class 属性值 如：.telA(选择 class 属性值为 telA 的所有元素)</p>
+<p>示例：打开百度首页，通过 css 定位，class 属性来输入搜索关键字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 打开 chrome 浏览器</span></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line"><span class="comment"># 打开百度搜索页面</span></span><br><span class="line">driver.get(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">driver.find_element_by_css_selector(<span class="string">&#x27;.s_ipt&#x27;</span>).send_keys(<span class="string">&#x27;hello python&#x27;</span>)</span><br><span class="line"><span class="comment"># 强制等待 2 秒查看效果</span></span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 关闭浏览器</span></span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure>
+
+<p><strong>3：属性选择器</strong></p>
+<p>说明：根据元素的属性名和值来选择</p>
+<p>格式：[attribute&#x3D;value] 如：[type&#x3D;’password’]（选择所有 type 属性为 password 的值）</p>
+<p>示例：打开百度首页，通过 css 定位，属性选择器来输入搜索关键字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 打开 chrome 浏览器</span></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line"><span class="comment"># 打开百度搜索页面</span></span><br><span class="line">driver.get(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">driver.find_element_by_css_selector(<span class="string">&#x27;[name=&quot;wd&quot;]&#x27;</span>).send_keys(<span class="string">&#x27; 你好，python&#x27;</span>)</span><br><span class="line"><span class="comment"># 强制等待 2 秒查看效果</span></span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 关闭浏览器</span></span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure>
+
+<p><strong>4：层级选择器</strong></p>
+<p>说明：根据元素的父子关系来选择</p>
+<p>格式：element&gt;element 如：p&gt;input（返还所有 P 元素下所有的 input 元素）</p>
+<p>提示：&gt; 可以用空格代替，如：p input 或者 p [type&#x3D;’password’]</p>
+<p>示例：打开百度首页，通过 css 定位，层级选择器来输入搜索关键字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 打开 chrome 浏览器</span></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line"><span class="comment"># 打开百度搜索页面</span></span><br><span class="line">driver.get(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过 css 层级选择器定位</span></span><br><span class="line">driver.find_element_by_css_selector(<span class="string">&#x27;form &gt; span &gt; input&#x27;</span>).send_keys(<span class="string">&#x27; 层级属性 &#x27;</span>)</span><br><span class="line"><span class="comment"># 强制等待 2 秒查看效果</span></span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 关闭浏览器</span></span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure>
+
+<p><strong>5：通过绝对路径定位</strong></p>
+<p>什么是绝对路径？绝对路径其实就是从开始标签（html）一级一级找到目标元素，上下级元素分隔符为 &gt; 或者空格</p>
+<p>例如：通过 css 绝对路径定位百度输入框，并输入内容检索，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span>  webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 打开浏览器</span></span><br><span class="line">driver=webdriver.Chrome()</span><br><span class="line"><span class="comment"># 加载项目地址（百度）</span></span><br><span class="line">driver.get(<span class="string">&quot;http://www.baidu.com&quot;</span>)</span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 定位百度输入框</span></span><br><span class="line">driver.find_element_by_css_selector(<span class="string">&quot;html body div div div div div form span input&quot;</span>).send_keys(<span class="string">&quot; 小龙女 &quot;</span>)</span><br><span class="line">driver.find_element_by_css_selector(<span class="string">&quot;html&gt;body&gt;div&gt;div&gt;div</span></span><br></pre></td></tr></table></figure>
+
+<p>自动化测试 Python+Selenium 中对于 web 测试定位页面元素的两种主流 XPATH 和 CSS 定位方式 XPATH 定位和 CSS 定位很相似，XPATH 功能更强大一些，但 CSS 定位方式速度更快，但是某些浏览器不支持 CSS 定位，并且一般在自动化测试过程中使用 xpath 定位方式要比 css 更普遍。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://note.520086.xyz">LuckyHunter</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://note.520086.xyz/posts/1901/">https://note.520086.xyz/posts/1901/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://note.520086.xyz" target="_blank">LuckyHunter's notes</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/6692/" title="Playwright with React"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Playwright with React</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LuckyHunter</div><div class="author-info__description">为知识投资</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chasing66"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/chasing66" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:chasing0806@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://music.163.com/user/home?id=19969120" target="_blank" title="Music"><i class="fa-solid fa-music"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-%20%E4%B8%8E%20-Xpath-%20%E5%AE%9A%E4%BD%8D%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text">CSS 与 Xpath 定位的区别 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%AE%9A%E4%BD%8D"><span class="toc-number">2.</span> <span class="toc-text"> 属性定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B1%9E%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">其他属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE"><span class="toc-number">4.</span> <span class="toc-text">标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E7%BA%A7%E5%85%B3%E7%B3%BB"><span class="toc-number">5.</span> <span class="toc-text">层级关系 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">6.</span> <span class="toc-text">索引 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E5%8C%B9%E9%85%8D"><span class="toc-number">7.</span> <span class="toc-text">模糊匹配</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/1901/" title="0041 css locate elemennts">0041 css locate elemennts</a><time datetime="2023-04-26T03:08:58.000Z" title="发表于 2023-04-26 11:08:58">2023-04-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/6692/" title="Playwright with React">Playwright with React</a><time datetime="2023-03-06T15:32:02.000Z" title="发表于 2023-03-06 23:32:02">2023-03-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/47564/" title="Python 路径操作模块 pathlib">Python 路径操作模块 pathlib</a><time datetime="2023-03-04T06:08:18.000Z" title="发表于 2023-03-04 14:08:18">2023-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/44819/" title="如何优雅编写测试用例">如何优雅编写测试用例</a><time datetime="2023-02-19T12:39:45.000Z" title="发表于 2023-02-19 20:39:45">2023-02-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/16968/" title="Python 开发之序列化与反序列化：pickle、json 模块使用详解">Python 开发之序列化与反序列化：pickle、json 模块使用详解</a><time datetime="2022-12-30T01:55:31.000Z" title="发表于 2022-12-30 09:55:31">2022-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By LuckyHunter</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -12,7 +12,7 @@
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-CHY3RCM2FR');
-</script><script>const GLOBAL_CONFIG = { 
+</script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
@@ -39,11 +39,9 @@ gtag('config', 'G-CHY3RCM2FR');
   copyright: undefined,
   lightbox: 'fancybox',
   Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
   islazyload: false,
@@ -51,92 +49,86 @@ gtag('config', 'G-CHY3RCM2FR');
   percent: {
     toc: true,
     rightside: false,
-  }
+  },
+  autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'LuckyHunter\'s notes',
   isPost: false,
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-05-03 14:07:13'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
+  postUpdate: '2023-10-15 19:08:01'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
         }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
         }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
         }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
         }
       }
-      win.activateLightMode = function () {
+      win.activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
@@ -144,9 +136,9 @@ gtag('config', 'G-CHY3RCM2FR');
       }
       const t = saveToLocal.get('theme')
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
       const asideStatus = saveToLocal.get('aside-status')
       if (asideStatus !== undefined) {
         if (asideStatus === 'hide') {
@@ -156,13 +148,44 @@ gtag('config', 'G-CHY3RCM2FR');
         }
       }
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
       }
-    }
-    detectApple()
-    })(window)</script><script async src="https://analytics.umami.is/script.js" data-website-id="dd465945-045a-494e-8f67-958830de96bf"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="LuckyHunter's notes"><span class="site-name">LuckyHunter's notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1901/" title="0041 css locate elemennts">0041 css locate elemennts</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-26T03:08:58.000Z" title="发表于 2023-04-26 11:08:58">2023-04-26</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-26T03:17:02.580Z" title="更新于 2023-04-26 11:17:02">2023-04-26</time></span></div><div class="content">大部分人在使用 selenium 定位元素时，用的是 xpath 定位，css 定位往往被忽略掉了，其实 css 定位也有它的价值，css 定位更快，语法更简洁。
+      detectApple()
+    })(window)</script><script async src="https://analytics.umami.is/script.js" data-website-id="dd465945-045a-494e-8f67-958830de96bf"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="LuckyHunter's notes"><span class="site-name">LuckyHunter's notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/11365/" title="Debian 12 fail2ban 无法启动">Debian 12 fail2ban 无法启动</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-15T10:31:45.000Z" title="发表于 2023-10-15 18:31:45">2023-10-15</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-15T10:59:13.840Z" title="更新于 2023-10-15 18:59:13">2023-10-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/fail2ban/">fail2ban</a></span></div><div class="content">问题  在最新安装的 debian12 上遇到以下问题：
+123456789101112131415 fail2ban.service - Fail2Ban Service     Loaded: loaded (/lib/systemd/system/fail2ban.service; enabled; preset: enabled)     Active: failed (Result: exit-code) since Fri 2023-09-15 12:34:46 CEST; 1min 47s ago   Duration: 71ms       Docs: man:fail2ban(1)    Process: 1027 ExecStart=/usr/bin/fail2ban-server -xf start (code=exited, status=255/EXCEPTION)   Main PID: 1027 (code=exited, status=255/EXCEPTION)        CPU: 68msSep 15 12:34:46 jelly systemd ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4389/" title="Linux 临时和永久修改 DNS 方法">Linux 临时和永久修改 DNS 方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-14T04:19:03.000Z" title="发表于 2023-10-14 12:19:03">2023-10-14</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-15T11:06:21.730Z" title="更新于 2023-10-15 19:06:21">2023-10-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/dns/">dns</a></span></div><div class="content">1、修改 DNS 配置：方法一（临时修改，重启失效）修改下面文件：
+1vi /etc/resolv.conf
+
+加入想要修改的 DNS：
+12nameserver 1.1.1.1nameserver 8.8.8.8
+
+如果多个 DNS，就一行一个，修改之后保存退出即可；
+此方法修改后即刻生效，但重启后失效
+方法二（生成钩子阻止 DHCP 修改 resolv.conf）Debian&#x2F;Ubuntu 下生成 nodnsupdate 文件：
+123456vim /etc/dhcp/dhclient-enter-hooks.d/nodnsupdate#!/bin/shmake_resolv_conf()&#123;:&#125;
+
+给文件 nodnsupdate 添加可执行权限：
+1chmod +x /etc/dhcp/dhclient-enter-hooks.d/nodnsupdate
+
+重启系统，现在你就可以修改 &#x2F;etc&#x2F;resolv.conf 文件而且不会担心被回滚了。
+方法三（写保护锁定 resolv.conf 文件）12rm -f /etc/resolv ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3382/" title="Tmux 教程">Tmux 教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-12T08:15:49.000Z" title="发表于 2023-07-12 16:15:49">2023-07-12</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-12T08:19:10.870Z" title="更新于 2023-07-12 16:19:10">2023-07-12</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">1. Tmux 是什么？!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fe5674de-c6c5-4aef-b041-bd00ece9232d/2dab075fdcea44958d7afc99b37200db.png
+Tmux 是一个终端复用器（terminal multiplexer），属于常用的开发工具，学会了之后可以大大的提高工作效率。
+1.1 基本概念  在使用 tmux 之前我们先了解关于 tmux 的几个名词：
+
+session，会话（任务）
+windows，窗口
+pane，窗格
+
+关于 session，很多人把 session 成为会话，但我觉得 叫任务  更适合一些。
+在普通的终端中，窗口和其中由于 session（任务）而启动的进程是连在一起的，关闭窗口，session 就结束了，session 内部的进程也会终止，不管是否运行完。但是在具体使用中，我们希望当前的 session 隐藏起来，在终端中做其他事情，但是又不希望 session 及其进程被关闭。这样就需要用到 tmux，对 sess ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/17861/" title="ChatGPT 超级提示词">ChatGPT 超级提示词</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-30T09:17:25.000Z" title="发表于 2023-06-30 17:17:25">2023-06-30</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-12T08:19:10.870Z" title="更新于 2023-07-12 16:19:10">2023-07-12</time></span></div><div class="content"> 超级 Prompt：
+12345678910111213141516171819202122232425 你是一个专家级 ChatGPT 提示工程师，在各种主题方面具有专业知识。在我们的互动过程中，你会称我为（你的名字）。让我们合作创建最好的 ChatGPT 响应我提供的提示。我们将进行如下交互：1. 我会告诉你如何帮助我。2. 根据我的要求，您将建议您应该承担的其他专家角色，除了成为专家级 ChatGPT 提示工程师之外，以提供最佳响应。然后，您将询问是否应继续执行建议的角色，或修改它们以获得最佳结果。3. 如果我同意，您将采用所有其他专家角色，包括最初的 Expert ChatGPT Prompt Engineer 角色。4. 如果我不同意，您将询问应删除哪些角色，消除这些角色，并保留剩余的角色，包括专家级 ChatGPT Prompt 工程师角色，然后再继续。5. 您将确认您的活动专家角色，概述每个角色下的技能，并询问我是否要修改任何角色。6. 如果我同意，您将询问要添加或删除哪些角色，我将通知您。重复步骤 5，直到我对角色满意为止。7. 如果我不同意，请继续下一步。8. 你会 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/8563/" title="zimfw 初体验">zimfw 初体验</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-01T14:44:05.000Z" title="发表于 2023-06-01 22:44:05">2023-06-01</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-12T08:19:10.870Z" title="更新于 2023-07-12 16:19:10">2023-07-12</time></span></div><div class="content">之前使用 oh-my-zsh 的自带 git&#x2F;nvm 等插件有时候有性能问题，同时据说其框架本身相比其他一些主打速度的配置框架 (prezto&#x2F;zimfw 等) 也会慢一点。
+稍微折腾了一下，使用 zimfw 作为 zsh 配置框架，它在速度和可配置性间达到了很好的平衡。
+个人切换后，试了下跑 zprof，启动时间只有原先使用 oh-my-zsh 时的一半，且没有明显感觉缺失常用功能，度量方式参考 Profiling zsh startup time。
+安装  按照项目 README 中的安装指南跑一遍就好，不超过一分钟。
+插件加载  用上自带的模块和 zsh-users 里一些优秀的插件，就已经有很好的表现，其中 zsh-users&#x2F;zsh-autosuggestions 和 zsh-users&#x2F;zsh-syntax-highlighting 能让 zsh 也有类似于 fish 一样友好的代码高亮反馈和输入自动补全功能。zimfw 比较友好的一点就在于：默认配置（使用其提供的安装脚本）里给出的组合就已经很棒了。
+添加插件的方式与 oh-my-z ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1901/" title="CSS 定位元素">CSS 定位元素</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-26T03:08:58.000Z" title="发表于 2023-04-26 11:08:58">2023-04-26</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-11T14:29:09.620Z" title="更新于 2023-05-11 22:29:09">2023-05-11</time></span></div><div class="content">大部分人在使用 selenium 定位元素时，用的是 xpath 定位，css 定位往往被忽略掉了，其实 css 定位也有它的价值，css 定位更快，语法更简洁。
 我们先来看看 css 定位与 xpath 定位的区别在哪？
 CSS 与 Xpath 定位的区别  属性定位CSScss 可以通过元素的 id、class、标签这三个常规属性直接定位
 
@@ -196,101 +219,12 @@ pathlib 模块主类继承关系图
 序列化：将内存中的不可持久化和传输对象转换为可方便持久化和传输对象的过程。
 反序列化：将可持久化和传输对象转换为不可持久化和传输对象的过程。
 Python 中提供 pickle 和 json 两个模块来实现序列化与反序列化，pickle 模块和 json 模块 dumps()、dump()、loads()、load()这是个函数，其中 dumps()、dump()用于实现序列化，loads()、load()用于实现反序列化。下面，我们分别对 pickle 和 json 模块进行介绍。
-pickle 模块 ​ pickle 模块的 dumps()、dump()、loads()、load( ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/49253/" title="Python 中输出表格的两种方式">Python 中输出表格的两种方式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-18T05:34:25.000Z" title="发表于 2022-12-18 13:34:25">2022-12-18</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-18T06:11:16.650Z" title="更新于 2022-12-18 14:11:16">2022-12-18</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/python/">python</a></span></div><div class="content">前言  本文主要介绍 python 中输出表格的两种方式，即分别使用tabulate 和 prettytable。
-tabulate安装、导入123pip install tabulatefrom tabulate import tabulate
-
-从 list 生成表格1234567&gt;&gt;&gt; table = [[&#x27;First Name&#x27;, &#x27;Last Name&#x27;, &#x27;Age&#x27;], [&#x27;John&#x27;, &#x27;Smith&#x27;, 39], [&#x27;Mary&#x27;, &#x27;Jane&#x27;, 25], [&#x27;Jennifer&#x27;, &#x27;Doe&#x27;, 28]]&gt;&gt;&gt; print(tabulate(table))----------  ---------  ---First Name  Last Name  AgeJohn        Smith      39Mary        Jane       25Jen ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/24675/" title="Sed 备忘清单">Sed 备忘清单</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-10T16:55:22.000Z" title="发表于 2022-12-11 00:55:22">2022-12-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-10T17:21:34.060Z" title="更新于 2022-12-11 01:21:34">2022-12-11</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/sed/">sed</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/linix/">linix</a></span></div><div class="content">入门 Sed 用法 语法
-1$ sed [options] command [input-file]
-
-带管道
-1$ cat report.txt | sed &#x27;s/Nick/John/g&#x27;
-
-1$ echo &#x27;123abc&#x27; | sed &#x27;s/[0-9]+//g&#x27;
-
-选项示例
-
-
-参数
-示例
-描述
-
-
-
--i
-sed -ibak ‘s&#x2F;On&#x2F;Off&#x2F;‘ php.ini
-直接备份和修改输入文件
-
-
--E
-sed -E ‘s&#x2F;[0-9]+&#x2F;&#x2F;g’ input-file
-使用扩展正则表达式
-
-
--n
-sed -n ‘3 p’ config.conf
-禁止默认图案空间打印
-
-
--f
-sed -f script.sed config.conf
-执行 sed 脚本文件
-
-
--e
-sed -e ‘command1’ -e ‘command2’ input-file
-执行多个 sed 命令
-
-
-多个命令12$ echo &quot;hello world&quot; | sed - ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2873/" title="Xpath 轴，函数，谓语笔记">Xpath 轴，函数，谓语笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-08T02:43:38.000Z" title="发表于 2022-12-08 10:43:38">2022-12-08</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-08T02:49:24.280Z" title="更新于 2022-12-08 10:49:24">2022-12-08</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/xpath/">xpath</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a></span></div><div class="content"> 函数 
-
-
- 函数 
- 例子 
- 解释 
-
-
-
-starts-with
-&#x2F;&#x2F;div[starts-with(@id,”maida”)]
- 选取 id 值为 maida 开头的 div
-
-
-contains
-&#x2F;&#x2F;div[contains(@id,”maida”)]
- 选取 id 值含 maida 的 div
-
-
-and
-&#x2F;&#x2F;div[starts-with(@id,”maida”) and contains(@id,”hello”)]
- 选取 id 值为 maida 开头且含有 hello 的 div
-
-
-text()
-1. &#x2F;&#x2F;p&#x2F;text() 2. div[contains(text(),”maida”)]
-1. 获取 p 的文本内容 2. 选取文本内容含 maida 的 div
-
-
-string
-1. string(.) 2. string(&#x2F;&#x2F;div&#x2F;a)
-1. 获取当前节点的文本内容组合成的单独字符串 2. 获取 &#x2F;&#x2F;div&#x2F;a  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/13963/" title="使用 Xpath 定位元素">使用 Xpath 定位元素</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-24T12:30:45.000Z" title="发表于 2022-11-24 20:30:45">2022-11-24</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-08T02:49:01.220Z" title="更新于 2022-12-08 10:49:01">2022-12-08</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/xpath/">xpath</a></span></div><div class="content">什么是 XpathXPath (XML Path Language) 是一门在 XML 文档中查找信息的语言，可用来在 XML 文档中对元素和属性进行遍历。
-XPath 定位在爬虫和自动化测试中都比较常用，通过使用路径表达式来选取 XML 文档中的节点或者节点集，熟练掌握 XPath 可以极大提高提取数据的效率。
-因为 XPath 解析数据，是基于元素（Element）的树形结构，所以学习 XPath 前，先了解一下 html 的结构及常用标签。
-基本标签 1234567891011121314151617 标题：`&lt;h1&gt;、&lt;h2&gt;、&lt;h3&gt;、&lt;h4&gt;、&lt;h5&gt;、&lt;h6&gt;、&lt;title&gt;`段落：&lt;p&gt;链接：&lt;a&gt;图像：&lt;img&gt;样式：&lt;style&gt;列表：` 无序列表 &lt;ul&gt;、有序列表 &lt;ol&gt;、列表项 &lt;li&gt;`块：`&lt;div&gt;、&lt;span&gt;`脚本：&lt;script&gt;注释：&lt;! ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/29561/" title="禁用 vim 的 visual 模式">禁用 vim 的 visual 模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-22T05:28:06.000Z" title="发表于 2022-10-22 13:28:06">2022-10-22</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-24T12:29:47.100Z" title="更新于 2022-11-24 20:29:47">2022-11-24</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">前言  从 Debian9 开始，为了便于选取文本，VIM 引入了可视 (Visual) 模式。 可以使用以下三种模式：
-
-用 v 命令进入的字符可视化模式（Characterwise visual mode)。文本选择是以字符为单位的。
-用 V 命令进入的行可视化模式（Linewise visual mode)。文本选择是以行为单位的。
-用 ctrl-V 进入的块可视化模式（Blockwise visual mode）。可以选择一个矩形内的文本。
-
-个人用不太习惯，此处记录一下如何 disable 这个功能。
-方法  通过编辑 vim 配置文件去除默认设置的鼠标模式a。可以编辑全局 /etc/vim/vimrc.local 或者当前用户配置文件~/.vimrc
-1234567tee /etc/vim/vimrc.local  &lt;&lt; EOFsource $(find / -name defaults.vim)let skip_defaults_vim = 1if has(&#x27;mouse&#x27;)    set mouse-=aendifEOF
-
-此处也记录一下  ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LuckyHunter</div><div class="author-info__description">为知识投资</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chasing66"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/chasing66" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:chasing0806@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://music.163.com/user/home?id=19969120" target="_blank" title="Music"><i class="fa-solid fa-music"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/1901/" title="0041 css locate elemennts">0041 css locate elemennts</a><time datetime="2023-04-26T03:08:58.000Z" title="发表于 2023-04-26 11:08:58">2023-04-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/6692/" title="Playwright with React">Playwright with React</a><time datetime="2023-03-06T15:32:02.000Z" title="发表于 2023-03-06 23:32:02">2023-03-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/47564/" title="Python 路径操作模块 pathlib">Python 路径操作模块 pathlib</a><time datetime="2023-03-04T06:08:18.000Z" title="发表于 2023-03-04 14:08:18">2023-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/44819/" title="如何优雅编写测试用例">如何优雅编写测试用例</a><time datetime="2023-02-19T12:39:45.000Z" title="发表于 2023-02-19 20:39:45">2023-02-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/16968/" title="Python 开发之序列化与反序列化：pickle、json 模块使用详解">Python 开发之序列化与反序列化：pickle、json 模块使用详解</a><time datetime="2022-12-30T01:55:31.000Z" title="发表于 2022-12-30 09:55:31">2022-12-30</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+pickle 模块 ​ pickle 模块的 dumps()、dump()、loads()、load( ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LuckyHunter</div><div class="author-info__description">为知识投资</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chasing66"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/chasing66" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:chasing0806@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://music.163.com/user/home?id=19969120" target="_blank" title="Music"><i class="fa-solid fa-music"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/11365/" title="Debian 12 fail2ban 无法启动">Debian 12 fail2ban 无法启动</a><time datetime="2023-10-15T10:31:45.000Z" title="发表于 2023-10-15 18:31:45">2023-10-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/4389/" title="Linux 临时和永久修改 DNS 方法">Linux 临时和永久修改 DNS 方法</a><time datetime="2023-10-14T04:19:03.000Z" title="发表于 2023-10-14 12:19:03">2023-10-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/3382/" title="Tmux 教程">Tmux 教程</a><time datetime="2023-07-12T08:15:49.000Z" title="发表于 2023-07-12 16:15:49">2023-07-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/17861/" title="ChatGPT 超级提示词">ChatGPT 超级提示词</a><time datetime="2023-06-30T09:17:25.000Z" title="发表于 2023-06-30 17:17:25">2023-06-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/8563/" title="zimfw 初体验">zimfw 初体验</a><time datetime="2023-06-01T14:44:05.000Z" title="发表于 2023-06-01 22:44:05">2023-06-01</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Selenium/"><span class="card-category-list-name">Selenium</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/nginx/"><span class="card-category-list-name">nginx</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/openstack/" style="font-size: 1.1em; color: #999">openstack</a> <a href="/tags/xpath/" style="font-size: 1.18em; color: #999ca1">xpath</a> <a href="/tags/docker/" style="font-size: 1.34em; color: #99a3b0">docker</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" style="font-size: 1.1em; color: #999">虚拟化</a> <a href="/tags/certbot/" style="font-size: 1.1em; color: #999">certbot</a> <a href="/tags/sudo/" style="font-size: 1.1em; color: #999">sudo</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" style="font-size: 1.1em; color: #999">自动化</a> <a href="/tags/rpc/" style="font-size: 1.1em; color: #999">rpc</a> <a href="/tags/pip/" style="font-size: 1.1em; color: #999">pip</a> <a href="/tags/pathlib/" style="font-size: 1.1em; color: #999">pathlib</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/nginx/" style="font-size: 1.18em; color: #999ca1">nginx</a> <a href="/tags/linux/" style="font-size: 1.5em; color: #99a9bf">linux</a> <a href="/tags/npm/" style="font-size: 1.1em; color: #999">npm</a> <a href="/tags/playwright/" style="font-size: 1.1em; color: #999">playwright</a> <a href="/tags/python/" style="font-size: 1.42em; color: #99a6b7">python</a> <a href="/tags/mariadb/" style="font-size: 1.1em; color: #999">mariadb</a> <a href="/tags/apache/" style="font-size: 1.1em; color: #999">apache</a> <a href="/tags/git/" style="font-size: 1.26em; color: #999fa8">git</a> <a href="/tags/lsof/" style="font-size: 1.1em; color: #999">lsof</a> <a href="/tags/tool/" style="font-size: 1.1em; color: #999">tool</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" style="font-size: 1.1em; color: #999">测试用例</a> <a href="/tags/vnc/" style="font-size: 1.1em; color: #999">vnc</a> <a href="/tags/xiaomi/" style="font-size: 1.1em; color: #999">xiaomi</a> <a href="/tags/maddy/" style="font-size: 1.18em; color: #999ca1">maddy</a> <a href="/tags/xfce/" style="font-size: 1.1em; color: #999">xfce</a> <a href="/tags/linix/" style="font-size: 1.1em; color: #999">linix</a> <a href="/tags/exception/" style="font-size: 1.1em; color: #999">exception</a> <a href="/tags/sed/" style="font-size: 1.1em; color: #999">sed</a> <a href="/tags/supervisord/" style="font-size: 1.1em; color: #999">supervisord</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">八月 2022</span><span class="card-archive-list-count">6</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">42</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2021-09-30T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-05-03T06:07:12.692Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By LuckyHunter</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/sudo/" style="font-size: 1.1em; color: #999">sudo</a> <a href="/tags/python/" style="font-size: 1.42em; color: #99a6b7">python</a> <a href="/tags/certbot/" style="font-size: 1.1em; color: #999">certbot</a> <a href="/tags/pip/" style="font-size: 1.1em; color: #999">pip</a> <a href="/tags/vnc/" style="font-size: 1.1em; color: #999">vnc</a> <a href="/tags/xpath/" style="font-size: 1.18em; color: #999ca1">xpath</a> <a href="/tags/linix/" style="font-size: 1.1em; color: #999">linix</a> <a href="/tags/apache/" style="font-size: 1.1em; color: #999">apache</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" style="font-size: 1.1em; color: #999">虚拟化</a> <a href="/tags/exception/" style="font-size: 1.1em; color: #999">exception</a> <a href="/tags/supervisord/" style="font-size: 1.1em; color: #999">supervisord</a> <a href="/tags/git/" style="font-size: 1.26em; color: #999fa8">git</a> <a href="/tags/fail2ban/" style="font-size: 1.1em; color: #999">fail2ban</a> <a href="/tags/npm/" style="font-size: 1.1em; color: #999">npm</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" style="font-size: 1.1em; color: #999">测试用例</a> <a href="/tags/sed/" style="font-size: 1.1em; color: #999">sed</a> <a href="/tags/tool/" style="font-size: 1.1em; color: #999">tool</a> <a href="/tags/lsof/" style="font-size: 1.1em; color: #999">lsof</a> <a href="/tags/linux/" style="font-size: 1.5em; color: #99a9bf">linux</a> <a href="/tags/maddy/" style="font-size: 1.18em; color: #999ca1">maddy</a> <a href="/tags/mariadb/" style="font-size: 1.1em; color: #999">mariadb</a> <a href="/tags/xiaomi/" style="font-size: 1.1em; color: #999">xiaomi</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/rpc/" style="font-size: 1.1em; color: #999">rpc</a> <a href="/tags/dns/" style="font-size: 1.1em; color: #999">dns</a> <a href="/tags/xfce/" style="font-size: 1.1em; color: #999">xfce</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" style="font-size: 1.1em; color: #999">自动化</a> <a href="/tags/pathlib/" style="font-size: 1.1em; color: #999">pathlib</a> <a href="/tags/docker/" style="font-size: 1.34em; color: #99a3b0">docker</a> <a href="/tags/nginx/" style="font-size: 1.18em; color: #999ca1">nginx</a> <a href="/tags/openstack/" style="font-size: 1.1em; color: #999">openstack</a> <a href="/tags/playwright/" style="font-size: 1.1em; color: #999">playwright</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">47</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2021-09-30T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-10-15T11:08:00.739Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By LuckyHunter</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -12,7 +12,7 @@
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-CHY3RCM2FR');
-</script><script>const GLOBAL_CONFIG = { 
+</script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
@@ -39,11 +39,9 @@ gtag('config', 'G-CHY3RCM2FR');
   copyright: undefined,
   lightbox: 'fancybox',
   Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
   islazyload: false,
@@ -51,92 +49,86 @@ gtag('config', 'G-CHY3RCM2FR');
   percent: {
     toc: true,
     rightside: false,
-  }
+  },
+  autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'LuckyHunter\'s notes',
   isPost: false,
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-05-03 14:07:13'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
+  postUpdate: '2023-10-15 19:08:01'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
         }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
         }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
         }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
         }
       }
-      win.activateLightMode = function () {
+      win.activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
@@ -144,9 +136,9 @@ gtag('config', 'G-CHY3RCM2FR');
       }
       const t = saveToLocal.get('theme')
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
       const asideStatus = saveToLocal.get('aside-status')
       if (asideStatus !== undefined) {
         if (asideStatus === 'hide') {
@@ -156,13 +148,58 @@ gtag('config', 'G-CHY3RCM2FR');
         }
       }
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
       }
-    }
-    detectApple()
-    })(window)</script><script async src="https://analytics.umami.is/script.js" data-website-id="dd465945-045a-494e-8f67-958830de96bf"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="LuckyHunter's notes"><span class="site-name">LuckyHunter's notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/51797/" title="ubuntu 使用 snap 包">ubuntu 使用 snap 包</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-05T18:32:51.000Z" title="发表于 2022-08-06 02:32:51">2022-08-06</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span></div><div class="content">概述  什么是 snap，snap 是一种全新的软件包管理方式，它类似一个容器拥有一个应用程序所有的文件和库，各个应用程序之间完全独立。所以使用 snap 包的好处就是它解决了应用程序之间的依赖问题，使应用程序之间更容易管理。但是由此带来的问题就是它占用更多的磁盘空间snap 软件包一般安装在 &#x2F;snap 目录下
+      detectApple()
+    })(window)</script><script async src="https://analytics.umami.is/script.js" data-website-id="dd465945-045a-494e-8f67-958830de96bf"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="LuckyHunter's notes"><span class="site-name">LuckyHunter's notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/10135/" title="使用 direnv 自动加载当前文件夹环境变量">使用 direnv 自动加载当前文件夹环境变量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-24T07:57:50.000Z" title="发表于 2022-08-24 15:57:50">2022-08-24</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">前言direnv 通过 hook 当前的 shell 来根据当前目录加载或卸载环境变量。
+当进入项目对应目录之后，direnv 会检查当前和父目录中是否存在 .envrc 或 .env 的文件。如果文件存在并且有权限访问的话，则会将其加载到 BASH 的 shell 中，然后通过 direnv 捕获所有导出的变量，提供给当前 shell 使用。如果 .envrc 和 .env 文件同时存在的话，则将优先选择 .envrc 文件。
+它支持像 Bash、ZSH、TCSH 和 FISH 这样的所有常见的 Shell 工具，允许项目特定的环境变量而不会对 ~&#x2F;.profile 文件进行混乱。direnv 是 Go 语言编写的, 被编译成一个静态可执行文件，所以速度足够快。它也是语言无关的，可以用来构建类似于 rbenv、pyenv 和 phpenv 的解决方案
+安装  直接安装12sudo apt updatesudo apt install direnv -y
+
+使用官方脚本1curl -sfL https://direnv.net/install.sh | bash
+
+Hook  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/54550/" title="docker 部署 mariadb">docker 部署 mariadb</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-22T14:56:03.000Z" title="发表于 2022-08-22 22:56:03">2022-08-22</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/docker/">docker</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/mariadb/">mariadb</a></span></div><div class="content">前言docker 部署的优点不言而喻，一旦出现问题，可以删除的干干净净，完全不影响宿主机环境。而且只要宿主机资源足够，想起几个起几个，可以搭建主从节点。
+这篇文章主要记录一下部署的步骤，部署过程中遇到的问题，以及如何解决。
+docker-compose file12345678910111213141516171819202122232425version: &quot;3.9&quot;services:  mariadb:    image: mariadb:latest    container_name: mariadb    command:      - &quot;--character-set-server=utf8mb4&quot;      - &quot;--collation-server=utf8mb4_unicode_ci&quot;      - &quot;--max_allowed_packet=32505856&quot;      - &quot;--transaction-isolation=READ-COMMITTED&quot;      - ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/6610/" title="Selenium 使用 cookies 经验">Selenium 使用 cookies 经验</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-16T03:16:59.000Z" title="发表于 2022-08-16 11:16:59">2022-08-16</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Selenium/">Selenium</a></span></div><div class="content">前言  最近在使用 Selenium 时, 遇到的一个问题是由于使用了 SSO 集中鉴权, 会使用微软的two-step authentication code, 导致没有办法实现自动化登录。并且非常无奈的是，找了一大圈人，没有能帮忙解决的，按道理这种登录的问题应该是已经有成熟的经验和 case 了。最终只能靠自己的，打算使用 cookie 来暂时解决，先往下进行。
+获取 cookies打算先写一个简单的函数来获取 cookies, 然后保存在本地，后续直接调用 cookies，这样就只需要一次登录就可以了。
+12345678910111213141516171819202122232425262728293031323334import pytestimport timeimport jsonfrom selenium import webdriverfrom selenium.webdriver.common.by import Byclass Testloginforge(object):    def setup_method(self, method):        sel ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4296/" title="使用 pyenv 管理 python 版本">使用 pyenv 管理 python 版本</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-07T07:20:43.000Z" title="发表于 2022-08-07 15:20:43">2022-08-07</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/python/">python</a></span></div><div class="content">前言  安装不同的 Python 版本并不是一件容易的事情，在不同的 Python 版本之间来回切换更加困难，而且， 多版本并存非常容易互相干扰。这里使用的 Pyenv，它能够进行全局的 Python 版本切换，也可以为单个项目提供对应的 Python 版本, 非常方便。
+安装步骤
+安装编译 python 所需要的环境
+
+123sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+
+安装 pyenv
+
+1curl https://pyenv.run | bash
+
+
+配置 pyenv
+
+
+如果使用的是 bash
+
+123echo &#x27;export PYENV_ROOT=&quot;$ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/13861/" title="XiaoMi8 刷机体验 Pixel Experience 12 plus">XiaoMi8 刷机体验 Pixel Experience 12 plus</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-06T10:02:38.000Z" title="发表于 2022-08-06 18:02:38">2022-08-06</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-08T02:42:59.100Z" title="更新于 2022-12-08 10:42:59">2022-12-08</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/xiaomi/">xiaomi</a></span></div><div class="content">前言  我的小米 8 已经用了有 4 年了，当年买的时候真的是神机。只是一路用过来从 MIUI9 到 MIUI12，随着系统添加的功能越来越多，手机变得越来越卡，越来越发热，此处点名批评 MIUI 12.5.2 是真的烂。
+于是萌生了体验原生安卓的想法，一番搜索了解后最终选择了 Pixel Experience
+注意事项
+刷机会清空所有数据，注意做好备份
+刷机有风险，请谨慎操作
+
+准备工作
+解锁 Bootloader，登出小米账户
+准备刷机工具 platform_tools
+耐心和解决问题的决心
+
+资源下载  为方便国内使用，所用到的镜像, recovery，以及 Magisk 都打包一起分享了，请投币自取。
+Pixel Experience 12 Plus 刷机资源
+刷机步骤  输入 PE 官方 recoveryPE 12 Plus 需要使用官方的 recovery
+
+手机长按 电源 + 音量下 键进入 fastboot 模式
+
+1fastboot flash recovery PixelExperience_Plus_dipper-12.1-20220722-2201-OFFICI ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/51797/" title="ubuntu 使用 snap 包">ubuntu 使用 snap 包</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-05T18:32:51.000Z" title="发表于 2022-08-06 02:32:51">2022-08-06</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span></div><div class="content">概述  什么是 snap，snap 是一种全新的软件包管理方式，它类似一个容器拥有一个应用程序所有的文件和库，各个应用程序之间完全独立。所以使用 snap 包的好处就是它解决了应用程序之间的依赖问题，使应用程序之间更容易管理。但是由此带来的问题就是它占用更多的磁盘空间snap 软件包一般安装在 &#x2F;snap 目录下
 常用的命令  其实使用 snap 包很简单，下面来介绍一下一些常用的命令
 
 sudo snap list列出已经安装的 snap 包
@@ -203,72 +240,12 @@ Windo ...</div></div></div><div class="recent-post-item"><div class="recent-post
 
 1234systemctl daemon-reload # 重新加载systemctl enable hysteria # 开机自启systemctl start hysteria # 启动systemctl status hysteria # 状态
 
-使用 cat 生成配置文件1234567891011121314cat &gt; /etc/systemd/system/onedrive.servi ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1109/" title="yaml 还是 yml?">yaml 还是 yml?</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-15T13:10:56.000Z" title="发表于 2022-07-15 21:10:56">2022-07-15</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span></div><div class="content">前言 yaml 的文件扩展名有两种：.yaml 和.yml。那么到底应该使用哪个后缀呢？
-官方文档  根据 yaml.org 的官方文档，推荐我们使用.yaml。
-历史原因  文件的扩展名对文件的内容没有任何关系或影响。可以在任何扩展名的文件中保存 YAML 内容：.yml、.yaml或其他任何文件。
-YAML FAQ（相当少）建议使用 .yaml 而不是.yml，但由于历史原因，许多 Windows 程序员仍然害怕使用超过三个字符的扩展名，所以选择使用.yml。
-所以，真正重要的是文件里面有什么，而不是它的扩展名是什么。
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/42891/" title="git 自动换行符">git 自动换行符</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-09T09:33:52.000Z" title="发表于 2022-06-09 17:33:52">2022-06-09</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/git/">git</a></span></div><div class="content">前言  最近在提交代码时，始终无法过 static analysis。最后发现由于使用了 BeyondCompare 比较更改配置，然后再 Window 提交的代码，提交代码时，没有检查换行符。
-基本概念
-回车 CR：将光标移动到当前行开头；
-换行 LF：将光标“垂直”移动到下一行，并不改变光标水平位置。
-
-CR、LF、CR&#x2F;LF 为不同操作系统上使用的换行符：
-
-
-
-平台
-区别
-
-
-
-Windows&#x2F;DOS
-采用 CR&#x2F;LF 表示下一行
-
-
-Unix&#x2F;Linux
-采用 LF 表示下一行
-
-
-Mac OS 系统
-采用 CR 表示下一行
-
-
-Mac OS X 系统
-采用 LF 表示下一行
-
-
-解决方法  修改 git config autocrlf 配置：1git config --global core.autocrlf input
-
-配置有以下区别：
-
-core.autocrlf input：设置为 input，表示 git 在提交时转换为 LF，检出时不转换
-core.autocrlf true：设置为 true，表示 git 在提交时转换为 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/5650/" title="Linux 使用 adduser 与 useradd 添加普通用户的正确姿势">Linux 使用 adduser 与 useradd 添加普通用户的正确姿势</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-03T06:01:49.000Z" title="发表于 2022-06-03 14:01:49">2022-06-03</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">前言  在 Linux 操作系统中，添加用户可以使用 useradd 和 adduser 这两个命令。曾经在添加用户的实践中遇到过一些坑，比如使用 useradd 命令添加用户后无法正常使用，对 adduser 和 useradd 傻傻分不清楚。网上找到的相关内容很碎片化，初看会让人一脸懵逼，这促使我对这些知识进行了整理。
-
-本文所有指令需要在 root 权限下执行。非 root 用户需要加 sudo 前缀，或使用 sudo -i 命令切换到 root 账户操作。
-
-adduser 和 useradd 的区别  对于 De­bian 或 Ubuntu ，主要的区别在使用方式上：
-
-adduser是一个 perl 脚本，通过交互式菜单设定一些用户参数。在输入 adduser 用户名 后，会自动创建用户主目录（并复制 /etc/skel 目录下的文件）、指定系统 shell，提示输入用户密码，很简单的就添加了一个标准的普通用户。
-useradd是一个指令，如果不使用任何选项，创建的用户将无密码、无主目录、没有指定 shell。如果你需要正常使用这个账户，就还需要设置密码、创建家目录等额外操 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/50757/" title="Linux 中授予普通用户 sudo 权限的正确方法">Linux 中授予普通用户 sudo 权限的正确方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-03T03:25:06.000Z" title="发表于 2022-06-03 11:25:06">2022-06-03</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/sudo/">sudo</a></span></div><div class="content">前言  有时需要使用 root 权限，比如安装软件、启动服务等操作时就需要用到 sudo 命令来提升权限才能进行操作。而新添加的普通用户是没有权限进行 sudo 操作的，所以我们需要对普通用户授予 sudo 权限。授予 sudo 权限有三个方法，第一个是把用户添加到 sudo 用户组，第二个是修改 sudo 配置文件 (etc/sudoers)，第三个是添加配置文件到 /etc/sudoers.d/ 目录中。选其中一个即可，推荐第三个方法。
-安装 sudo如果系统中没有 sudo，需要先安装。
-1234# Debianapt install sudo -y# Centosyum install sudo -y
-
-添加用户到 sudo 用户组  以添加 enwaiax 这个用户到 sudo 用户组为例子，输入下面命令：
-1usermod -aG sudo enwaiax
-
- 修改 sudo 配置文件 (etc/sudoers) 打开 sudo 配置文件
-1visudo
-
-以授予 enwaiax 这个用户 sudo 权限为例子，添加如下内容。
-1enwaiax ALL=(ALL) ALL
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/15032/" title="总结：Python 中的异常处理">总结：Python 中的异常处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-23T03:04:27.000Z" title="发表于 2022-05-23 11:04:27">2022-05-23</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:15:33.920Z" title="更新于 2022-10-01 20:15:33">2022-10-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/python/">python</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/exception/">exception</a></span></div><div class="content">异常处理在任何一门编程语言里都是值得关注的一个话题，良好的异常处理可以让你的程序更加健壮，清晰的错误信息更能帮助你快速修复问题。在 Python 中，和不部分高级语言一样，使用了 try&#x2F;except&#x2F;finally 语句块来处理异常，如果你有其他编程语言的经验，实践起来并不难。
-异常处理语句 try…excpet…finally实例代码12345678910111213141516171819202122232425262728293031323334353637383940def div(a, b):    try:        print(a / b)    except ZeroDivisionError:        print(&quot;Error: b should not be 0 !!&quot;)    except Exception as e:        print(&quot;Unexpected Error: &#123;&#125;&quot;.format(e))    else:        print(&#x27;Ru ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LuckyHunter</div><div class="author-info__description">为知识投资</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chasing66"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/chasing66" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:chasing0806@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://music.163.com/user/home?id=19969120" target="_blank" title="Music"><i class="fa-solid fa-music"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/1901/" title="0041 css locate elemennts">0041 css locate elemennts</a><time datetime="2023-04-26T03:08:58.000Z" title="发表于 2023-04-26 11:08:58">2023-04-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/6692/" title="Playwright with React">Playwright with React</a><time datetime="2023-03-06T15:32:02.000Z" title="发表于 2023-03-06 23:32:02">2023-03-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/47564/" title="Python 路径操作模块 pathlib">Python 路径操作模块 pathlib</a><time datetime="2023-03-04T06:08:18.000Z" title="发表于 2023-03-04 14:08:18">2023-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/44819/" title="如何优雅编写测试用例">如何优雅编写测试用例</a><time datetime="2023-02-19T12:39:45.000Z" title="发表于 2023-02-19 20:39:45">2023-02-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/16968/" title="Python 开发之序列化与反序列化：pickle、json 模块使用详解">Python 开发之序列化与反序列化：pickle、json 模块使用详解</a><time datetime="2022-12-30T01:55:31.000Z" title="发表于 2022-12-30 09:55:31">2022-12-30</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+使用 cat 生成配置文件1234567891011121314cat &gt; /etc/systemd/system/onedrive.servi ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LuckyHunter</div><div class="author-info__description">为知识投资</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chasing66"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/chasing66" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:chasing0806@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://music.163.com/user/home?id=19969120" target="_blank" title="Music"><i class="fa-solid fa-music"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/11365/" title="Debian 12 fail2ban 无法启动">Debian 12 fail2ban 无法启动</a><time datetime="2023-10-15T10:31:45.000Z" title="发表于 2023-10-15 18:31:45">2023-10-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/4389/" title="Linux 临时和永久修改 DNS 方法">Linux 临时和永久修改 DNS 方法</a><time datetime="2023-10-14T04:19:03.000Z" title="发表于 2023-10-14 12:19:03">2023-10-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/3382/" title="Tmux 教程">Tmux 教程</a><time datetime="2023-07-12T08:15:49.000Z" title="发表于 2023-07-12 16:15:49">2023-07-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/17861/" title="ChatGPT 超级提示词">ChatGPT 超级提示词</a><time datetime="2023-06-30T09:17:25.000Z" title="发表于 2023-06-30 17:17:25">2023-06-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/8563/" title="zimfw 初体验">zimfw 初体验</a><time datetime="2023-06-01T14:44:05.000Z" title="发表于 2023-06-01 22:44:05">2023-06-01</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Selenium/"><span class="card-category-list-name">Selenium</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/nginx/"><span class="card-category-list-name">nginx</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/openstack/" style="font-size: 1.1em; color: #999">openstack</a> <a href="/tags/xpath/" style="font-size: 1.18em; color: #999ca1">xpath</a> <a href="/tags/docker/" style="font-size: 1.34em; color: #99a3b0">docker</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" style="font-size: 1.1em; color: #999">虚拟化</a> <a href="/tags/certbot/" style="font-size: 1.1em; color: #999">certbot</a> <a href="/tags/sudo/" style="font-size: 1.1em; color: #999">sudo</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" style="font-size: 1.1em; color: #999">自动化</a> <a href="/tags/rpc/" style="font-size: 1.1em; color: #999">rpc</a> <a href="/tags/pip/" style="font-size: 1.1em; color: #999">pip</a> <a href="/tags/pathlib/" style="font-size: 1.1em; color: #999">pathlib</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/nginx/" style="font-size: 1.18em; color: #999ca1">nginx</a> <a href="/tags/linux/" style="font-size: 1.5em; color: #99a9bf">linux</a> <a href="/tags/npm/" style="font-size: 1.1em; color: #999">npm</a> <a href="/tags/playwright/" style="font-size: 1.1em; color: #999">playwright</a> <a href="/tags/python/" style="font-size: 1.42em; color: #99a6b7">python</a> <a href="/tags/mariadb/" style="font-size: 1.1em; color: #999">mariadb</a> <a href="/tags/apache/" style="font-size: 1.1em; color: #999">apache</a> <a href="/tags/git/" style="font-size: 1.26em; color: #999fa8">git</a> <a href="/tags/lsof/" style="font-size: 1.1em; color: #999">lsof</a> <a href="/tags/tool/" style="font-size: 1.1em; color: #999">tool</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" style="font-size: 1.1em; color: #999">测试用例</a> <a href="/tags/vnc/" style="font-size: 1.1em; color: #999">vnc</a> <a href="/tags/xiaomi/" style="font-size: 1.1em; color: #999">xiaomi</a> <a href="/tags/maddy/" style="font-size: 1.18em; color: #999ca1">maddy</a> <a href="/tags/xfce/" style="font-size: 1.1em; color: #999">xfce</a> <a href="/tags/linix/" style="font-size: 1.1em; color: #999">linix</a> <a href="/tags/exception/" style="font-size: 1.1em; color: #999">exception</a> <a href="/tags/sed/" style="font-size: 1.1em; color: #999">sed</a> <a href="/tags/supervisord/" style="font-size: 1.1em; color: #999">supervisord</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">八月 2022</span><span class="card-archive-list-count">6</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">42</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2021-09-30T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-05-03T06:07:12.692Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By LuckyHunter</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/sudo/" style="font-size: 1.1em; color: #999">sudo</a> <a href="/tags/python/" style="font-size: 1.42em; color: #99a6b7">python</a> <a href="/tags/certbot/" style="font-size: 1.1em; color: #999">certbot</a> <a href="/tags/pip/" style="font-size: 1.1em; color: #999">pip</a> <a href="/tags/vnc/" style="font-size: 1.1em; color: #999">vnc</a> <a href="/tags/xpath/" style="font-size: 1.18em; color: #999ca1">xpath</a> <a href="/tags/linix/" style="font-size: 1.1em; color: #999">linix</a> <a href="/tags/apache/" style="font-size: 1.1em; color: #999">apache</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" style="font-size: 1.1em; color: #999">虚拟化</a> <a href="/tags/exception/" style="font-size: 1.1em; color: #999">exception</a> <a href="/tags/supervisord/" style="font-size: 1.1em; color: #999">supervisord</a> <a href="/tags/git/" style="font-size: 1.26em; color: #999fa8">git</a> <a href="/tags/fail2ban/" style="font-size: 1.1em; color: #999">fail2ban</a> <a href="/tags/npm/" style="font-size: 1.1em; color: #999">npm</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" style="font-size: 1.1em; color: #999">测试用例</a> <a href="/tags/sed/" style="font-size: 1.1em; color: #999">sed</a> <a href="/tags/tool/" style="font-size: 1.1em; color: #999">tool</a> <a href="/tags/lsof/" style="font-size: 1.1em; color: #999">lsof</a> <a href="/tags/linux/" style="font-size: 1.5em; color: #99a9bf">linux</a> <a href="/tags/maddy/" style="font-size: 1.18em; color: #999ca1">maddy</a> <a href="/tags/mariadb/" style="font-size: 1.1em; color: #999">mariadb</a> <a href="/tags/xiaomi/" style="font-size: 1.1em; color: #999">xiaomi</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/rpc/" style="font-size: 1.1em; color: #999">rpc</a> <a href="/tags/dns/" style="font-size: 1.1em; color: #999">dns</a> <a href="/tags/xfce/" style="font-size: 1.1em; color: #999">xfce</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" style="font-size: 1.1em; color: #999">自动化</a> <a href="/tags/pathlib/" style="font-size: 1.1em; color: #999">pathlib</a> <a href="/tags/docker/" style="font-size: 1.34em; color: #99a3b0">docker</a> <a href="/tags/nginx/" style="font-size: 1.18em; color: #999ca1">nginx</a> <a href="/tags/openstack/" style="font-size: 1.1em; color: #999">openstack</a> <a href="/tags/playwright/" style="font-size: 1.1em; color: #999">playwright</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">47</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2021-09-30T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-10-15T11:08:00.739Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By LuckyHunter</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

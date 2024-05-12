@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://note.520086.xyz/posts/60442/</loc>
+    
+    <lastmod>2024-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://note.520086.xyz/posts/4389/</loc>
     
     <lastmod>2023-10-15</lastmod>
@@ -20,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://note.520086.xyz/posts/17861/</loc>
+    <loc>https://note.520086.xyz/posts/8563/</loc>
     
     <lastmod>2023-07-12</lastmod>
     
@@ -29,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://note.520086.xyz/posts/8563/</loc>
+    <loc>https://note.520086.xyz/posts/17861/</loc>
     
     <lastmod>2023-07-12</lastmod>
     
@@ -434,7 +443,7 @@
   </url>
   
   <url>
-    <loc>https://note.520086.xyz/link/index.html</loc>
+    <loc>https://note.520086.xyz/categories/index.html</loc>
     
     <lastmod>2022-10-01</lastmod>
     
@@ -443,7 +452,7 @@
   </url>
   
   <url>
-    <loc>https://note.520086.xyz/categories/index.html</loc>
+    <loc>https://note.520086.xyz/link/index.html</loc>
     
     <lastmod>2022-10-01</lastmod>
     
@@ -463,7 +472,7 @@
 
   <url>
     <loc>https://note.520086.xyz/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -471,224 +480,231 @@
   
   <url>
     <loc>https://note.520086.xyz/tags/hexo/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/git/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/linux/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/python/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/rpc/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/openstack/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/docker/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/npm/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/nginx/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/maddy/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/lsof/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/exception/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/sudo/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/supervisord/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/pip/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/vnc/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/xfce/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/xiaomi/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/mariadb/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/tool/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/apache/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/certbot/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/xpath/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/sed/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/linix/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/pathlib/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/playwright/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/dns/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://note.520086.xyz/tags/ubuntu/</loc>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/tags/fail2ban/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -697,21 +713,21 @@
   
   <url>
     <loc>https://note.520086.xyz/categories/nginx/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/categories/Selenium/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://note.520086.xyz/categories/Python/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
